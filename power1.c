@@ -1,30 +1,33 @@
 #include <stdio.h>
 #define MAXLINE 1000 /* the max length allowed to input */
 
-int getline(char line[], int maxline);
+int mygetline(char line[], int maxline);
 void copy(char to[], char from[]);
 
 /*print the longest line*/
-main()
+int main()
 {
     int len;
     int max;
+    int i;
     char line[MAXLINE];
     char longest[MAXLINE];
 
     max = 0;
-    while ((len = getline(line, MAXLINE)) > 0)
+    while ((len = mygetline(line, MAXLINE)) > 0)
         if (len > max){
             max = len;
             copy(longest, line);
         }
     if (max > 0)
-        printf("%s", longest);
+        printf("%s\n", longest);
     return 0;
 }
 
-/* func getline: read one line to s and return its length*/
-int getline(char s[], int lim)
+/* func mygetline: read one line to s and return its length*/
+/* this function counts the chars in this line and return the number of these chars */
+
+int mygetline(char s[], int lim)
 {
     int c, i;
 
@@ -35,31 +38,14 @@ int getline(char s[], int lim)
         ++i;
     }
     s[i] = '\0';
-    return i;
+    return i;/*return the number of this line*/
 }
 
-
-/* func copy: copy 'from' to 'to', it supposes 'to' that is big enough*/
 void copy(char to[], char from[])
 {
     int i;
 
     i = 0;
-    while ((to[i] = from[i]) != '\0')
+    while ((to[i] = from[i] != '\0'))
         ++i;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
